@@ -1,27 +1,23 @@
-# Use official Python image as base
-FROM python:3.10-slim
+# Start from Miniconda base image
+FROM continuumio/miniconda3:23.3.1
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-
-# Set work directory
+# Set working directory
 WORKDIR /app
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    && rm -rf /var/lib/apt/lists/*
+# Copy only environment.yml first to leverage Docker layer caching
+COPY environment.yml ./
 
-# Install dependencies
-COPY requirements.txt /app/
-RUN pip install --upgrade pip && pip install -r requirements.txt
+# Create the environment (this step will be cached unless environment.yml changes)
+RUN conda env create -f environment.yml
 
-# Copy project files
-COPY . /app/
+# Make RUN commands use the new environment
+SHELL ["conda", "run", "-n", "threat-detection-ai", "/bin/bash", "-c"]
 
-# Expose port for FastAPI
+# Copy the rest of the application
+COPY . .
+
+# Expose FastAPI port
 EXPOSE 8000
 
-# Run the FastAPI app using Uvicorn
-CMD ["uvicorn", "app.api.v1.api:app", "--host", "0.0.0.0", "--port", "8000"]
+# Default command (uses conda environment)
+CMD ["conda", "run", "--no-capture-output", "-n", "threat-detection-ai", "uvicorn", "app.api.v1.api:app", "--host", "0.0.0.0", "--port", "8000"]
