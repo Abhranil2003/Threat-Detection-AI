@@ -1,0 +1,29 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Miniconda
+      uses: conda-incubator/setup-miniconda@v3
+      with:
+        environment-file: environment.yml
+        activate-environment: threat-detection-ai
+        auto-activate-base: false
+
+    - name: Verify environment setup
+      run: conda info
+
+    - name: Run tests
+      run: |
+        python -m unittest discover tests/
