@@ -24,6 +24,8 @@ jobs:
     - name: Verify environment setup
       run: conda info
 
-    - name: Run tests
+    - name: Run tests in environment
+      shell: bash -l {0}
       run: |
+        conda activate threat-detection-ai
         python -m unittest discover tests/
