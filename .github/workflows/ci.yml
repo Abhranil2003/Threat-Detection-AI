@@ -1,10 +1,10 @@
-name: CI - Threat Detection AI
+name: Build and Test
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
@@ -14,19 +14,19 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
+    - name: Debug environment.yml contents
+      run: cat environment.yml
+
     - name: Set up Miniconda
       uses: conda-incubator/setup-miniconda@v3
       with:
         auto-activate-base: false
         environment-file: environment.yml
-        python-version: 3.10
         activate-environment: threat-detection-ai
 
     - name: Verify environment setup
-      run: |
-        conda info
-        conda list
+      run: conda info
 
     - name: Run tests
       run: |
-        echo "No tests yet. Replace with pytest or custom test scripts."
+        python -m unittest discover tests/
