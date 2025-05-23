@@ -1,4 +1,4 @@
-from utils import load_model
+from src.utils import load_model 
 import os
 
 def test_model_loading():
@@ -7,4 +7,4 @@ def test_model_loading():
         model = load_model(model_path)
         assert model is not None
     else:
-        assert True  # Skip test if model is not present
+        assert True  
