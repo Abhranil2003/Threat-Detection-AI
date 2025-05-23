@@ -1,6 +1,6 @@
 import pandas as pd
 import pytest
-from preprocessing import preprocess_data
+from src.preprocessing import preprocess_data 
 
 def test_preprocess_data_valid_input():
     df = pd.DataFrame({
