@@ -24,10 +24,14 @@ jobs:
     - name: Verify environment setup
       run: conda info
 
+    - name: Set PYTHONPATH
+      run: |
+        echo "PYTHONPATH=$PYTHONPATH:$(pwd)/src" >> $GITHUB_ENV
+        echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV # Also add root for test discovery
+
     - name: Run tests in environment
       shell: bash -l {0}
       run: |
         conda activate threat-detection-ai
-        export PYTHONPATH=$PYTHONPATH:$(pwd)
+        # PYTHONPATH is already set by the previous step via GITHUB_ENV
         python -m unittest discover tests/
-        
