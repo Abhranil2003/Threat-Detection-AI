@@ -1,5 +1,6 @@
 import joblib
 import pandas as pd
+import pickle
 
 def load_artifacts(model_path, scaler_path, encoders_path):
     """Load model, scaler, and encoders."""
@@ -23,3 +24,8 @@ def preprocess_input(df, encoders, scaler):
 def predict_input(model, X):
     """Predict using trained model."""
     return model.predict(X)
+
+def load_model(model_path):
+    with open(model_path, 'rb') as file:
+        model = pickle.load(file)
+    return model
