@@ -30,9 +30,8 @@ jobs:
     - name: List installed packages
       run: conda list
 
-    - name: Run tests in environment
-      shell: bash -l {{0}}
+    - name: Run tests
       run: |
+        source $(conda info --base)/etc/profile.d/conda.sh
         conda activate threat-detection-ai
-        export PYTHONPATH=$PYTHONPATH:$(pwd)
-        python -m unittest discover tests/
+        pytest tests/
