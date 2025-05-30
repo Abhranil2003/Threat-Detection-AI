@@ -25,13 +25,21 @@ jobs:
         activate-environment: threat-detection-ai
 
     - name: Verify Conda environment creation
+      shell: bash -l {0}
       run: conda env list
 
     - name: List installed packages
+      shell: bash -l {0}
       run: conda list
 
-    - name: Run tests
+    - name: Install pytest and coverage tools
+      shell: bash -l {0}
       run: |
-        source $(conda info --base)/etc/profile.d/conda.sh
         conda activate threat-detection-ai
-        pytest tests/
+        pip install pytest pytest-cov
+
+    - name: Run unit tests with coverage
+      shell: bash -l {0}
+      run: |
+        conda activate threat-detection-ai
+        pytest --cov=. --cov-report=term-missing
