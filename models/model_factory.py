@@ -1,12 +1,14 @@
+from models.random_forest import RandomForestModel
+from models.logistic_regression import LogisticRegressionModel
+from models.xgboost_model import XGBoostModel
+
 def get_model(model_name):
+    model_name = model_name.lower()
     if model_name == "random_forest":
-        from models.random_forest import RandomForestModel
         return RandomForestModel()
     elif model_name == "logistic_regression":
-        from models.logistic_regression import LogisticRegressionModel
         return LogisticRegressionModel()
     elif model_name == "xgboost":
-        from models.xgboost_model import XGBoostModel
         return XGBoostModel()
     else:
-        raise ValueError(f"Unsupported model type: {model_name}")
+        raise ValueError(f"Unsupported model: {model_name}")
