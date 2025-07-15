@@ -48,7 +48,12 @@ def scale_features(X):
     X_scaled = scaler.fit_transform(X)
     print(f"[INFO] Feature scaling complete.")
     return X_scaled, scaler
-
+    
+def preprocess_data(df):
+    df = clean_data(df)
+    df, _ = encode_features(df)
+    return df
+    
 def preprocess_pipeline(input_path, output_path, label_column="Label"):
     """Full preprocessing pipeline."""
     df = load_data(input_path)
