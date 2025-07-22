@@ -1,23 +1,26 @@
-channels:
-- defaults
-- conda-forge
-dependencies:
-- python=3.10
-- pandas=1.5.3
-- numpy=1.24.4
-- scikit-learn=1.3.2
-- joblib=1.3.2
-- matplotlib=3.7.3
-- seaborn=0.12.2
-- pyyaml=6.0
-- loguru=0.7.2
-- pip
-- pip:
-  - fastapi==0.110.1
-  - uvicorn[standard]==0.29.0
-  - pydantic==1.10.13
-  - xgboost
-  - prometheus-client
-  - httpx==0.24.1  # Added httpx
-  - pytest         # Added pytest
 name: threat-detection-ai
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.12
+  - xgboost=2.0.3
+  - shap=0.44.1
+  - pandas=1.5.3
+  - numpy=1.24.4
+  - scikit-learn=1.3.2
+  - joblib=1.3.2
+  - matplotlib=3.7.3
+  - seaborn=0.12.2
+  - pyyaml=6.0
+  - loguru=0.7.2
+  - pip
+  - pip:
+      - fastapi==0.110.1
+      - uvicorn[standard]==0.29.0
+      - pydantic==1.10.13
+      - xgboost==2.0.3
+      - shap==0.44.1
+      - prometheus-client
+      - httpx==0.24.1
+      - pytest
