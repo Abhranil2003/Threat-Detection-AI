@@ -3,7 +3,7 @@ channels:
   - defaults
   - conda-forge
 dependencies:
-  - python=3.12
+  - python=3.11
   - xgboost=2.0.3
   - shap=0.44.1
   - pandas=1.5.3
