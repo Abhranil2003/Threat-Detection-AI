@@ -4,7 +4,7 @@ from src.api import app
 client = TestClient(app)
 
 def test_health_check():
-    response = client.get("/v1/")
+    response = client.get("/")
     assert response.status_code == 200
     assert response.json() == {"message": "Welcome to Threat Detection API v1"}
 
