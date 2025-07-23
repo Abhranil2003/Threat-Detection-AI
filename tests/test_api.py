@@ -15,6 +15,6 @@ def test_prediction():
         "Src IP": "192.168.1.1",
         "Dst IP": "192.168.1.2"
     }
-    response = client.post("/v1/predict", json=sample_data)
+    response = client.post("/predict", json=sample_data)
     assert response.status_code == 200
     assert "prediction" in response.json()
