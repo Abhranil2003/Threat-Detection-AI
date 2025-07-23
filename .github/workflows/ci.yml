@@ -42,4 +42,5 @@ jobs:
       shell: bash -l {0}
       run: |
         conda activate threat-detection-ai
+        export PYTHONPATH=$(pwd)/src:$PYTHONPATH
         pytest --cov=. --cov-report=term-missing
