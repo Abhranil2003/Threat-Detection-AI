@@ -88,10 +88,14 @@ def preprocess_pipeline(folder_path, output_path, label_column="Label"):
 
 # Example usage
 if __name__ == "__main__":
+    if __name__ == "__main__":
     preprocess_pipeline(
         folder_path="data/raw/CIC-IDS-2017", 
         output_path="data/processed/CIC-IDS-2017",
-        folder_path="data/raw/NSL-KDD99",  
+        label_column="Label"
+    )
+    preprocess_pipeline(
+        folder_path="data/raw/NSL-KDD99",
         output_path="data/processed/NSL-KDD99",
         label_column="Label"
     )
