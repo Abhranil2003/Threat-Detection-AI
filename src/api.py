@@ -36,3 +36,7 @@ def predict(sample: TrafficSample):
         return {"prediction": int(prediction[0])}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to Threat Detection API v1"}
