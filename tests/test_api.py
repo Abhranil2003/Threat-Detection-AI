@@ -10,10 +10,11 @@ def test_health_check():
 
 def test_prediction():
     sample_data = {
-        "TotLen Fwd Pkts": 20,
         "Protocol": "TCP",
-        "Src IP": "192.168.1.1",
-        "Dst IP": "192.168.1.2"
+        "Flow_Duration": 1000,
+        "Total_Fwd_Packets": 20,
+        "Total_Backward_Packets": 10
+        # Add all required fields as defined in TrafficSample
     }
     response = client.post("/predict", json=sample_data)
     assert response.status_code == 200
